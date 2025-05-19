@@ -4,4 +4,7 @@ require("config.lazy")
 if vim.g.vscode then
     -- Color changer for the vscode neovim ui extension
     require("vscode-ui")
+    -- Keymaps for plugin settings specific to vscode
+    require("vscode-keymaps")
 end
+
