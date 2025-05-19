@@ -1,4 +1,4 @@
-Personal vim config.
+# Personal vim config
 
 Remaps the bpéo layout to use vim properly. Contrary to most other setup I’ve seen on bepo.fr, I am fully remaping the keyboard so that it is strictly qwerty on normal/visual mode. I prefer it like that.
 
