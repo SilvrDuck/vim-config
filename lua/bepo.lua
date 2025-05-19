@@ -1,5 +1,9 @@
 -- Description: Bépo layout configuration for Vim
 
+-- Insert mode: NBSP (U+202F) → <Esc>
+vim.keymap.set({'i', 'v'}, '<Char-0x202F>', '<Esc>', { noremap = true, silent = true, desc = 'Use nbsp as <Esc>' })
+
+-- Regular keys mapping
 local function escape(str)
     -- You need to escape these characters to work correctly
     local escape_chars = [[;,."|\]]
@@ -23,6 +27,26 @@ vim.opt.langmap = vim.fn.join({
     escape(be_uppr) .. ';' .. escape(qw_uppr),
 }, ',')
 
--- Insert mode: NBSP (U+202F) → <Esc>
-vim.keymap.set({'i', 'v'}, '<Char-0x202F>', '<Esc>', { noremap = true, silent = true })
+-- Control key mapping
+local ascii_letter = '[A-Za-z]'
 
+---@param be string  -- Bépo string
+---@param qw string  -- Qwerty string (same length)
+local function map_ctrl(be, qw)
+  -- Ensure table lengths match
+  assert(#be == #qw, 'langmap tables length mismatch')
+  for i = 1, #be do
+    local b = be:sub(i, i)
+    local q = qw:sub(i, i)
+    -- Only letters can form Ctrl-<char>
+    if b:match(ascii_letter) and q:match(ascii_letter) then
+      local lhs = '<C-' .. b .. '>'
+      local rhs = '<C-' .. q .. '>'
+      -- all major modes where Ctrl mappings make sense
+      vim.keymap.set({'n','v','o','s','i','c','t'}, lhs, rhs,
+                     { noremap = true, silent = true, desc = 'Bépo-Ctrl → Qwerty-Ctrl' })
+    end
+  end
+end
+
+map_ctrl(be_lowr, qw_lowr)
