@@ -26,3 +26,15 @@ vim.opt.langmap = vim.fn.join({
     escape(be_lowr) .. ';' .. escape(qw_lowr),
     escape(be_uppr) .. ';' .. escape(qw_uppr),
 }, ',')
+
+-- Equivalent .vimrc if needed:
+--[[ 
+set langmap=$\"«»()@+-/*=%;`1234567890-=,#1234567890°`;~!@#$%^&*()_+,bépoè^vdljzwauie\,ctsrnmçêàyx\.k’qghf;qwertyuiop[]asdfghjkl\;'\\yzxcvbnm\,\./,BÉPOÈ!VDLJZWAUIE\;CTSRNMÇÊÀYX:K?QGHF;QWERTYUIOP{}ASDFGHJKL:\"\|YZXCVBNM<>?
+inoremap <Char-0x202F> <Esc>
+vnoremap <Char-0x202F> <Esc>
+nnoremap <Char-0x202F> <Esc>
+onoremap <Char-0x202F> <Esc>
+snoremap <Char-0x202F> <Esc>
+cnoremap <Char-0x202F> <Esc>
+tnoremap <Char-0x202F> <Esc>
+]]
